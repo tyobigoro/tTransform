@@ -9,31 +9,50 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var textField: UITextField!
     
-    var inTransformation: Bool = false
+    @IBOutlet weak var menuView: UIView!
+    
+    var isVisible_menu: Bool = false {
+        didSet {
+            if oldValue != isVisible_menu {
+                updateVisiblityOfMenuView()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
     
-    func reverse() {
-        if inTransformation { return }
-        inTransformation = true
+    @IBAction func btnDidTap(_ sender: Any) {
+        isVisible_menu.toggle()
+    }
+    
+    func updateVisiblityOfMenuView() {
+        let size = CGSize(width: self.view.bounds.width * 0.8, height: self.view.bounds.height)
+        let visibleRect = CGRect(origin: .zero, size: size)
+        let inVisibleOrigin = CGPoint(x: -size.width, y: 0)
+        let inVisibleRect = CGRect(origin: inVisibleOrigin, size: size)
         
-        let transform: CGAffineTransform = .init(scaleX: -1, y: -1)
-        UIView.animate(withDuration: 0.5, animations: {
-            self.view.transform = self.view.transform.isIdentity ? transform : .identity
-        }, completion: { _ in
-            self.inTransformation = false
-        })
+        if isVisible_menu {
+            menuView.frame = inVisibleRect
+            self.view.addSubview(menuView)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.menuView.frame = visibleRect
+            })
+            return
+        }
+        
+        if !isVisible_menu {
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.menuView.frame = inVisibleRect
+            }, completion: { _ in
+                self.menuView.removeFromSuperview()
+            })
+            return
+        }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        reverse()
-        return true
-    }
 }
