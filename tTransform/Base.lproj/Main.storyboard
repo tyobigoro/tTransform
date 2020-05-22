@@ -15,27 +15,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWo-YZ-25u">
-                                <rect key="frame" x="348" y="832" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="52K-33-LFw"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="fMi-Sk-nir"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Xp-0M-Xit">
+                                <rect key="frame" x="335" y="821" width="51" height="31"/>
                                 <connections>
-                                    <action selector="btnDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VbA-wj-Ae0"/>
+                                    <action selector="btnDidTap:" destination="BYZ-38-t0r" eventType="valueChanged" id="0fZ-G4-fn2"/>
                                 </connections>
-                            </button>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="WWo-YZ-25u" firstAttribute="bottom" secondItem="SoN-hz-xCO" secondAttribute="bottom" id="88j-IL-VtQ"/>
-                            <constraint firstItem="SoN-hz-xCO" firstAttribute="trailing" secondItem="WWo-YZ-25u" secondAttribute="trailing" constant="20" id="dY7-zc-85f"/>
-                            <constraint firstItem="WWo-YZ-25u" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SoN-hz-xCO" secondAttribute="leading" symbolic="YES" id="twC-Ey-lkM"/>
+                            <constraint firstItem="SoN-hz-xCO" firstAttribute="bottom" secondItem="8Xp-0M-Xit" secondAttribute="bottom" constant="10" id="OkB-s6-fEK"/>
+                            <constraint firstItem="SoN-hz-xCO" firstAttribute="trailing" secondItem="8Xp-0M-Xit" secondAttribute="trailing" constant="30" id="kMB-8e-BAM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SoN-hz-xCO"/>
                     </view>
                     <connections>
+                        <outlet property="menuSwitch" destination="8Xp-0M-Xit" id="TMy-Fr-I6d"/>
                         <outlet property="menuView" destination="unQ-hP-jiR" id="fsc-id-Pgf"/>
                     </connections>
                 </viewController>

@@ -12,20 +12,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var menuView: UIView!
     
+    @IBOutlet weak var menuSwitch: UISwitch!
+    
+    
     var isVisible_menu: Bool = false {
         didSet {
             if oldValue != isVisible_menu {
                 updateVisiblityOfMenuView()
+                // ユーザーデフォルトへ保存する
+                let ud = UserDefaults.standard
+                ud.set(isVisible_menu, forKey: "switchIsOn")
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let ud = UserDefaults.standard
+        // 初期値の設定
+        ud.register(defaults: ["switchIsOn": false])
+        // ユーザーデフォルトから読み込む
+        isVisible_menu = ud.bool(forKey: "switchIsOn")
+        // スイッチの初期値として設定する
+        menuSwitch.isOn = isVisible_menu
+        
+        
     }
     
-    @IBAction func btnDidTap(_ sender: Any) {
-        isVisible_menu.toggle()
+    @IBAction func btnDidTap(_ sender: UISwitch) {
+        isVisible_menu = sender.isOn
     }
     
     func updateVisiblityOfMenuView() {
